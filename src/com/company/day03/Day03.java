@@ -44,7 +44,7 @@ public class Day03 {
 
     private void fillList() {
         try {
-            Scanner scanner = new Scanner(new File("C:/Users/Nath/Documents/AdventCode2020/src/com/company/day03/input.txt"));
+            Scanner scanner = new Scanner(new File("./src/com/company/day03/input.txt"));
             while(scanner.hasNextLine())
             {
                 String line = scanner.nextLine();

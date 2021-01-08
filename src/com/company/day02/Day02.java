@@ -44,7 +44,7 @@ public class Day02 {
 
     private void fulfillInputList(List<String> list) {
         try {
-            Scanner scanner = new Scanner(new File("C:/Users/Nath/Documents/AdventCode2020/src/com/company/day02/input.txt"));
+            Scanner scanner = new Scanner(new File("./src/com/company/day02/input.txt"));
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 list.add(line.replace(" ", ""));
