@@ -1,0 +1,9 @@
+/!\ DISCLAIMER /!\
+Answers are not unique and specific to each user and their Advent of Code profiles
+
+Day 01 : 703131 and 272423970
+Day 02 : 474 and 745
+Day 03 : 193 and 1355323200
+Day 04 : 222 and 140
+Day 05 : 850 and 599
+Day 06 : 6291 and 3052
