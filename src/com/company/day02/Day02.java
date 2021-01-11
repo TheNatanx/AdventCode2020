@@ -41,15 +41,15 @@ public class Day02 {
         int i = 0;
         for (String password : passwords) {
             char expected = expectedChars.get(i);
-            char firstChar = password.charAt(minNb.get(i));
-            char secondChar = password.charAt(maxNb.get(i));
+            char firstChar = password.charAt(minNb.get(i) - 1);
+            char secondChar = password.charAt(maxNb.get(i) - 1);
             if (firstChar == expected ^ secondChar == expected) secondAnswer++;
             i++;
         }
     }
 
     private void toDecodeList(List<String> listToReturn, List<String> list) {
-        list.forEach(s -> listToReturn.add(s.substring(s.indexOf(':') + 1)));
+        list.forEach(s -> listToReturn.add(s.substring(s.indexOf(':') + 1).trim()));
     }
 
     private void expectedChar(List<Character> listToReturn, List<String> list) {
