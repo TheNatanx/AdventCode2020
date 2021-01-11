@@ -30,8 +30,25 @@ public class Day06 {
 
     private void secondStar() {
         for (List<String> list : input2) {
+            if (list.size() == 1) {
+                secondAnswer += list.get(0).length();
+                continue;
+            }
+            Map<Character, Integer> map = new HashMap<>();
             for (Character character : alphabet) {
-
+                map.put(character, 0);
+            }
+            for (String s : list) {
+                for (Character character : map.keySet()) {
+                    if(s.contains(character.toString())) {
+                        map.replace(character, map.get(character) + 1);
+                    }
+                }
+            }
+            for (Integer value : map.values()) {
+                if (value == list.size()) {
+                    secondAnswer += 1;
+                }
             }
         }
     }
