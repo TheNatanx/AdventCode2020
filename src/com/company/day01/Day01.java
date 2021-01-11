@@ -2,9 +2,9 @@ package com.company.day01;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Day01 {
     private int firstAnswer, secondAnswer;
@@ -18,29 +18,29 @@ public class Day01 {
     }
 
     private void solveFirstPuzzle(List<Integer> list) {
-        for (int i = 0; i < list.size(); i++) {
-            for (int j = 0; j < list.size(); j++) {
-                if (i == j) continue;
-                if (list.get(i) + list.get(j) == 2020) {
-                    this.firstAnswer = list.get(i) * list.get(j);
-                    return;
-                }
-            }
-        }
+        int n = 2020;
+        HashSet<Integer> set = list.stream()
+                .filter(x -> x <= n >> 1)
+                .map(x -> n - x)
+                .collect(Collectors.toCollection(HashSet::new));
+        set.retainAll(new HashSet<>(list));
+        firstAnswer = set.stream().findFirst().map(x -> (n - x) * x).orElse(0);
     }
 
     private void solveSecondPuzzle(List<Integer> list) {
+        List<Integer[]> result = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
-            for (int j = 0; j < list.size(); j++) {
-                for (int k =0; k < list.size(); k++) {
-                    if ((i == j) || (i == k) || (j == k)) continue;
-                    if (list.get(i) + list.get(j) + list.get(k) == 2020) {
-                        this.secondAnswer = list.get(i) * list.get(j) * list.get(k);
-                        return;
-                    }
+            int t = 2020 - list.get(i);
+            Set<Integer> set = new HashSet<>();
+            for (int j = i + 1; j < list.size(); j++) {
+                if (set.contains(t - list.get(j))) {
+                    result.add(new Integer[]{list.get(i), list.get(j), t - list.get(j)});
+                } else {
+                    set.add(list.get(j));
                 }
             }
         }
+        secondAnswer = result.stream().flatMap(Stream::of).reduce(1, (a, b) -> a * b);
     }
 
     private void fulfillInputList(List<Integer> list) {
@@ -50,7 +50,7 @@ public class Day01 {
                 list.add(Integer.parseInt(scanner.nextLine()));
             }
             scanner.close();
-        } catch  (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
