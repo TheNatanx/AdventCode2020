@@ -6,6 +6,7 @@ import com.company.day03.Day03;
 import com.company.day04.Day04;
 import com.company.day05.Day05;
 import com.company.day06.Day06;
+import com.company.day07.Day07;
 
 import java.util.Date;
 
@@ -19,6 +20,7 @@ public class Main {
         new Day04();
         new Day05();
         new Day06();
+        new Day07();
         long finish = new Date().getTime();
         System.out.println("(Ce code a été exécuté en " + (finish - start) + " millisecondes.)");
     }
